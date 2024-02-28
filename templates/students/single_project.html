@@ -1,0 +1,94 @@
+{%extends 'students/student_base.html'%}
+{%block title%}Explore Project{%endblock%}
+
+{% comment %} <div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ project.project_title }}</h5>
+            <p class="card-text"> {{ project.College }}</p>
+            <p class="card-text">{{ project.project_domain }}</p>
+            <p class="card-text">{{ project.tech_stack }}</p>
+            <p class="card-text">{{ project.member_details_1 }}</p>
+            <p class="card-text">{{ project.member_details_2 }}</p>
+            <p class="card-text">{{ project.member_details_3 }}</p>
+            <p class="card-text">{{ project.member_details_4 }}</p>
+            {% if project.support_doc %}
+                <p class="card-text"><a href="{{ project.support_doc }}">Download Support Document</a></p>
+            {% endif %}
+
+        </div>
+    </div>
+</div> {% endcomment %}
+{%block style%}
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    background:#94d0ff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-text {
+    margin-bottom: 0.5rem;
+    font-size:17px;
+}
+
+.card-text ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.card-text ul li {
+    margin-left: 0;
+}
+
+.card-text a {
+    color: blue;
+    text-decoration: none;
+    font-family:Arial
+
+}
+
+.card-text a:hover {
+    text-decoration: underline;
+}
+
+{%endblock%}
+{%block body %}
+<br>
+<center><h3>{{ project.project_title }}</h3></center>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-title"> College: {{ project.College }}</p>
+            <p class="card-text"> Domain: {{ project.project_domain }}</p>
+            <p class="card-text"> Tech Stack: {{ project.tech_stack }}</p>
+            <p class="card-text" > Abstract: 
+                <div style="border-style:solid;border-radius:15px;border-width:1px;padding:15px">
+                {{ project.abstract }}
+                </div>
+            </p>
+            <pre><p class="card-text"> Members:
+        {{ project.member_details_1 }},
+        {{ project.member_details_2 }},
+        {{ project.member_details_3 }},
+        {{ project.member_details_4 }}</p><pre>
+            {% if project.support_doc %}
+                <p class="card-text"><a href="{{ project.support_doc }}">Download Support Document</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%endblock%}

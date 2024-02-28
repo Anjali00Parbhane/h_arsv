@@ -1,0 +1,43 @@
+{% extends 'students/student_base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="profile-info">
+        <h1>Profile Dashboard</h1>
+        <p><strong>College:</strong> {{ user.college_name.name }}</p>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Department:</strong> {{ user.department }}</p>
+        <p><strong>Current Year:</strong> {{ user.current_year }}</p>
+    </div>
+
+    <hr>
+
+    <div class="project-list">
+        <h2>My Projects</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Title</th>
+                    <th>Domain</th>
+                    <th>Tech Stack</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.project_title }}</td>
+                    <td>{{ project.project_domain }}</td>
+                    <td>{{ project.tech_stack }}</td>
+                    <td>
+                        <form action="{% url 'project_tasks' project.id %}" method="get">
+                            <button type="submit" class="btn btn-primary">View Tasks</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

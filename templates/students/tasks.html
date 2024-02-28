@@ -1,0 +1,35 @@
+{% extends 'students/student_base.html' %} {% block title %}Tasks{% endblock %}
+{% block body %}
+<div class="container">
+  <h1>Project Tasks: {{ project.project_title }}</h1>
+  <div class="task-list">
+    {% if tasks %}
+    <div class="row">
+      {% for task in tasks %}
+      <div class="col-md-4 mb-4">
+        <div
+          class="card"
+          style="cursor: pointer"
+          onclick="openTaskDetailsPage('{{ task.id }}')"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ task.project.project_title }}</h5>
+            <p class="card-text">{{ task.description }}</p>
+            <p class="card-text">Status: {{ task.status }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No tasks found for this project.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %} {% block script %}
+<script>
+  function openTaskDetailsPage(taskId) {
+    window.location.href = `/task-details/${taskId}/`;
+  }
+</script>
+{% endblock %}

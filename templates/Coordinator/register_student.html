@@ -1,0 +1,65 @@
+{% extends 'welcome/base.html' %}
+{% block css %}
+   
+{% endblock %}
+{% block body %}
+      <center><h1>Student Registration</h1></center>
+      <div class="container">
+
+      <form action="{% url 'register_student' %}" method="POST">
+         {% csrf_token %}
+         <div class="col-sm-11">
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Student Name</label>
+                     <input type="text" class="form-control" name="name" >
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Department</label>
+                     <input type="text" class="form-control" name="department" >
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Current Year</label>
+                     <input type="text" class="form-control" name="current_year" >
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Admission year</label>
+                     <input type="number" class="form-control" name="admission_year" >
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>University Number</label>
+                     <input type="number" class="form-control" name="university_no" >
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Email</label>
+                     <input type="email" class="form-control" name="email">
+                  </div>
+               </div>
+               
+               <div class="col-sm-11">
+                     <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password">
+                     </div>
+               </div>
+                  <br>
+                  <center><div class="col-12">
+                     <button type="submit" class="btn btn-primary">Add Student</button>
+                  </div></center>
+               </div>
+         </div>
+   </form>
+
+
+   </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'welcome/base.html' %}
+{% block body %}
+<br><center><h2>Tasks Lists</h2></center><br>
+<div class="container">
+    <div class="row">
+        {% for task in timeline_tasks %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.name }}</h5>
+                    <p class="card-text">{{ task.description }}</p>
+                    <p class="card-text">Due Date: {{ task.due_date }}</p>
+                    <p class="card-text">Notification Date: {{ task.notification_date }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>No tasks found for this timeline.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{%extends 'welcome/base.html'%}
+{%block body%}
+<div class="col-sm-11">
+    <div class="row">
+        <div class="col-sm-11">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <input type="text" class="form-control" id="department" name="department" required>
+                </div>
+                <div class="form-group">
+                    <label for="domain_id">Domain:</label>
+                    <select class="form-control" id="domain_id" name="domain_id" required>
+                        <option value="" selected disabled>Select Domain</option>
+                        {% for domain in domains %}
+                            <option value="{{ domain.id }}">{{ domain.domain_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register More</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+

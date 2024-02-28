@@ -1,0 +1,74 @@
+{% extends 'welcome/base.html' %}
+{% block style %} 
+.card {
+  {% comment %} width: 150px; {% endcomment %}
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f8f9fa; /* Light grey background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+}
+
+.card a {
+  text-decoration: none; 
+  color: #333; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.card a:hover {
+  color: #007bff; /* Change text color on hover */
+}
+
+
+
+{% endblock %} 
+{% block body %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'register_student' %}">Register student</a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'register_mentor' %}">Register mentor</a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'create_timeline' %}">Create Timeline</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'assign_mentors' %}">Assign Mentors</a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'filter_students' %}">Student Data</a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'projects_by_college' %}">Project Data</a>
+      </div>
+    </div>
+    <!-- Add additional cards here if needed -->
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{%extends 'welcome/base.html'%}
+{%block style%}
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    }
+  input,select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    }
+    button[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+   button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+{%endblock%}
+{%block body%}
+<center><h3>Students Data</h3></center>
+  <div class="container-md p-3">
+    <div class='row'>
+      <div class='col-3'></div>
+      <div class='col-6'>
+        <form action="{% url 'filter_students' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">View Students</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class='container'>
+        <div id="filtered-students ">
+            {% if students %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Admission Year</th>
+                        <th>Current Year</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.admission_year }}</td>
+                        <td>{{ student.current_year }}</td>
+                        <td>{{ student.department }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+
+{%endblock%}
+
+{% comment %} {%block script%}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+        $(document).ready(function() {
+            $('#filter-form').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '/filter_students/',
+                    data: $('#filter-form').serialize(),
+                    success: function(response) {
+                        $('#filtered-students').html(response);
+                    }
+                });
+            });
+        });
+    </script>
+
+{%endblock%} {% endcomment %}

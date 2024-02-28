@@ -1,0 +1,46 @@
+{% extends 'students/student_base.html'%}
+{%block body%}{% comment %} 
+<div class="container">
+    <center><h1>My Amazing Projects</h1></center>
+    <div class="project-list">
+        {% if projects %}
+            {% for project in projects %}
+                <div class="project">
+                    <h2>{{ project.project_title }}</h2>
+                    <p><strong>Domain:</strong> {{ project.project_domain }}</p>
+                    <p><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
+                    <form action="{% url 'project_tasks' project.id %}" method="get">
+                        <button type="submit">View Tasks</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No projects found.</p>
+        {% endif %}
+    </div>
+</div> {% endcomment %}
+<div class="container">
+    <center><h1>My Amazing Projects</h1></center>
+    <div class="row">
+        {% if projects %}
+            {% for project in projects %}
+                <div class="col-md-11 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.project_title }}</h5>
+                            <p class="card-text"><strong>Domain:</strong> {{ project.project_domain }}</p>
+                            <p class="card-text"><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
+                            <form action="{% url 'project_tasks' project.id %}" method="get">
+                                <button type="submit" class="btn btn-primary">View Tasks</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="col-md-12">No projects found.</p>
+        {% endif %}
+    </div>
+</div>
+
+{%endblock%}

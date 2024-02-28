@@ -1,0 +1,51 @@
+{%extends 'welcome/base.html'%}
+{%block body%}
+    <br>
+    <center><h1>Projects by College</h1></center>
+        {% comment %} <ul>
+            {% for project in projects %}
+            <li>
+                <strong>{{ project.project_title }}</strong><br>
+                Domain: {{ project.project_domain }}<br>
+                Tech Stack: {{ project.tech_stack }}<br>
+                <!-- Add more project details as needed -->
+            </li>
+            {% empty %}
+            <li>No projects found.</li>
+            {% endfor %}
+        </ul> {% endcomment %}
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Project Title</th>
+                        <th>Domain</th>
+                        <th>Tech Stack</th>
+                        <th>Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                    <tr>
+                        <td><a href='{% url 'project-tasks-id' project.id %}'>{{ project.project_title }}</a></td>
+                        <td>{{ project.project_domain.domain_name }}</td>
+                        <td>{{ project.tech_stack.name }}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li>{{ project.member_details_1.name }}</li>
+                                <li>{{ project.member_details_2.name }}</li>
+                                <li>{{ project.member_details_3.name }}</li>
+                                <li>{{ project.member_details_4.name }}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No projects found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+{%endblock%}
